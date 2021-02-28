@@ -1,0 +1,33 @@
+<html>
+
+<body>
+    <a href="./overflow坑.html">去overflow坑.html</div>
+    <div onclick="window.history.forward(-1)" style="margin-top: 100px;">forward（1）</div>
+</body>
+<script>
+    var c = 'window-c'
+    var d = 'window-d'
+    function add(a, b) {
+        console.log(this.c, this.d, a, b)
+
+    }
+    var json = {
+        c: 'json-c',
+        d: 'json-d'
+    }
+    add('normal', 6)
+    console.log('----------')
+
+    //call将函数参数依次往输入
+    add.call(json, 'call', 6)
+    console.log('----------')
+
+    //apply将函数参数变成数组放到apply第二个参数中
+    add.apply(json, ['apply', 6])
+    console.log('----------')
+    //bind与call一样，但返回的是一个函数，要加()去执行
+    add.bind(json, 'bind', 6)()
+
+</script>
+
+</html>

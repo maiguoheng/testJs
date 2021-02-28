@@ -1,0 +1,56 @@
+<html>
+
+<body>
+    <div class="out">
+        <div style="background: blue;" class="inner">55</div>
+        <div style="background: green;" class="inner">55</div>
+        <div style="background: red;" class="inner">55</div>
+    </div>
+</body>
+<style>
+
+</style>
+<script>
+    function Vue(param) {
+        console.error(this)
+        var that = this
+        this.data = param.data
+        Object.keys(this.data).forEach((key, index) => {
+            jiechi(this.data, key, this.data[key])
+            that.changeName(key)
+        })
+    }
+    Vue.prototype.changeName = function (key) {//this.name得到this.data.name
+        Object.defineProperty(this, key, {
+            get() {
+
+                return this['data'][key]
+            }
+        })
+    }
+
+    function jiechi(data, key, value) {
+        Object.defineProperty(data, key, {
+            set(newVal) {
+                console.log(`key${key}设置了值：` + newVal)
+            },
+            get() {
+                console.log(value)
+                return value + "--get"
+            }
+        })
+    }
+    var vm = new Vue({
+        data: {
+            myname: '你好啊'
+        }
+    })
+    vm.data.myname = "good"
+    console.log(vm.myname)
+    console.error(typeof vm,vm instanceof Vue);
+
+
+
+</script>
+
+</html>

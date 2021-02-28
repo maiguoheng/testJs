@@ -1,0 +1,91 @@
+<html>
+
+<body>
+    在css学习日记中有详细描述！！
+    <div style="margin-top:100px" />
+    <div class="father">
+        <div style="flex:1;background: blue;width:200px">
+            
+        </div>
+        <div style="flex-grow:3;background: green;width:200px">
+            我的属性：flex-grow:3;width:200px
+            <div style="color:red">最终结果：宽度为275px</div>
+        </div>
+    </div>
+    <div style="margin: 50px 0 0 200px;">
+        <div>蓝色部分用了flex:1</div>
+        <div>蓝色部分设置flex:1,绿色部分设置宽度为200px,父布局宽度为500px</div>
+        <div>因此剩余宽度为500-200=300px</div>
+        <div>蓝色部分flex-grow:1,绿色部分:flex-grow:3,</div>
+        <div>因此蓝色分配的比例为1/(1+3)=1/4,绿色分配的比例为3/(1+3)=3/4</div>
+        <div>也就是说蓝色增加宽度为300*1/4=75px,绿色为300*3/4=225px</div>
+        <div>蓝色最终宽度为原来的+增加的，即 0+75=75px,绿色占 200+225=425px</div>
+    </div> 
+
+
+
+    <!-- <div class="father" style="display:flex">
+        <div style="flex-shrink:1;background: blue;width:300px">
+            我的属性：flex-shrink:1; width:100px
+            <div style="color:red">最终结果：宽度为260px</div>
+        </div>
+        <div style="flex-shrink:3;background: green;width:400px">
+            我的属性：flex-shrink:3; width:300px
+            <div style="color:red">最终结果：宽度为240px</div>
+
+        </div>
+    </div>
+    <div style="margin-left: 200px;">父元素属性:{
+        display:flex;
+        width:500px;
+        height:120px;
+        margin-left:200px
+        }
+    </div>
+    <div style="margin: 50px 0 0 200px;">
+        <div>结果分析:</div>
+        <div>蓝色部分设置宽度300px,绿色部分设置宽度为400px,父布局宽度为500px</div>
+        <div>因此超出宽度为300+400-500=200px</div>
+        <div>蓝色部分flex-shrink:1,绿色部分:flex-shrink:3,</div>
+        <div>因此蓝色分配的比例为(300*1)/(300*1+400*3)=1/5,绿色分配的比例为(400*3)/(300*1+400*3)=4/5</div>
+        <div>也就是说蓝色缩短超出比例的1/5,绿色缩短1/5</div>
+        <div>即蓝色缩短宽度=超出宽度*占的比例=200*（1/5）=40px,同理绿色缩短200*（4/5）=160px</div>
+        <div>蓝色最终宽度为原来的-缩短的，即 300-40=260px,绿色占 400-160=240px</div>
+    </div> -->
+</body>
+<style>
+    body {
+        margin: 0;
+        padding: 0
+    }
+
+    .father {
+        height: 120px;
+        width: 500px;
+        margin-left: 200px;
+        display: flex;
+        background: black;
+    }
+
+    /* .box1{
+        flex-shrink:1
+
+    }
+    .box2{
+        flex-shrink:2
+
+    }
+
+    .box3{
+        flex-shrink:3
+
+    } */
+
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        /* height: 0px; */
+    }
+</style>
+
+</html>

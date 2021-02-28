@@ -1,0 +1,49 @@
+<html>
+
+<body>
+    <div style="width: 100px;background: blue;">
+        <div class="a"></div>
+    </div>
+</body>
+<style>
+    .a {
+        background: green;
+        padding-top: 20%;
+    }
+</style>
+<script>
+    function promiseM() {
+        this.status = 'pending'
+        let fun=arguments[0]
+        
+        fun((...arg)=>{
+            this.status = 'success'
+            this.arg = [...arg]
+        },(...arg)=>{
+            this.status = 'fail'
+            this.arg = [...arg]
+        })
+        
+    }
+    promiseM.prototype.then = function (resolve, reject) {
+        if (this.status = 'success') {
+            console.error(resolve,this.arg);
+            
+            resolve(...this.arg)
+        } else {
+            reject(...this.arg)
+
+        }
+    }
+
+    new promiseM((resolve, reject) => {
+        resolve(10, 11, 12)
+
+    }).then((...arg) => {
+        console.log(...arg)
+    }, () => { })
+
+
+</script>
+
+</html>

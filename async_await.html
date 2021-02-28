@@ -1,0 +1,72 @@
+<html>
+
+<body>
+
+</body>
+<script>
+    //async return一个promise对象
+    async function show(res) {
+        console.log('Number:' + res)
+        if (res <= 100) {
+            return res
+        } else {
+            throw '参数大于100'
+        }
+    }
+    show(100).then((res) => {
+        console.log('异步success:' + res)
+        //异步success：100
+    }).catch((res) => {
+        console.error('异步error:' + res)
+    })
+
+
+    show(200).then((res) => {
+        console.log('异步success:' + res)
+    }).catch((res) => {
+        console.error('异步error:' + res)
+        //异步error:200
+    })
+
+    //await部分,等待异步执行 方法一
+    function mulTen(res) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(res * 10)
+            }, 2000)
+        })
+    }
+
+
+    //await部分,等待异步执行 方法二
+    // async function mulTen(res) {
+    //     function a() {
+    //         return new Promise((resolve, reject) => {
+    //             setTimeout(() => {
+    //                 resolve(res * 10)
+    //             }, 2000)
+    //         })
+    //     }
+    //     var m = await a()
+    //     return m
+    // }
+
+    async function testAwait() {
+        var a = mulTen(1)
+        var b = mulTen(2)
+        console.log(a + '-' + b)//[object Promise]-[object Promise] 前面没有await，因此这里不会被await暂停
+
+        var c = await mulTen(3)
+        console.log(c)//2s后：30
+
+        var d = await mulTen(4).then((res) => { return res })
+        console.log(c + '-' + d)//4s后：30-40
+
+    }
+    testAwait()
+    console.log('函数外不等待await，继续执行，遇到await才会跳出来继续执行')
+
+
+</script>
+
+</html>

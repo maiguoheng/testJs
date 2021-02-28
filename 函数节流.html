@@ -1,0 +1,43 @@
+<html>
+
+<body>
+    <div class="out">
+        <div style="background: blue;" class="inner">55</div>
+        <div style="background: green;" class="inner">55</div>
+        <div style="background: red;" class="inner">55</div>
+    </div>
+</body>
+<style>
+
+</style>
+<script>
+    //函数节流：在特定时间内，只执行第一个函数请求。
+
+    //区别于函数防抖：函数在特定时间内的多个执行请求，只执行最后一个请求。
+    // 相同点：均会让函数在特定时间内只执行一次。一个执行最后一个，一个执行第一个
+
+    function jieliu(fun, delay) {
+        return function (args) {
+            if(fun.doing) return//如果函数在时间周期内已执行过，返回
+            fun.doing=true
+            fun.apply(this,args)
+            setTimeout(() => {
+                fun.doing=false
+            }, delay)
+        }
+
+    }
+
+    function show(name) {
+        console.log(11111, name)
+    }
+    var showJieliu=jieliu(show,1000)
+
+    window.onresize =function(){
+        showJieliu(['张三'])
+    } 
+
+
+</script>
+
+</html>

@@ -1,0 +1,68 @@
+<html>
+
+<body>
+    <div style="width: 100px;background: blue;">
+        <div class="a"></div>
+    </div>
+</body>
+<style>
+    .a {
+        background: green;
+        padding-top: 20%;
+    }
+</style>
+<script>
+    class fun{
+        constructor(){
+            this.list={}
+        }
+        add(key ,fn){
+            if(!this.list[key]){
+                this.list[key]=[]
+            }
+            this.list[key].push(fn)
+
+        }
+        pub(key,...param){
+            for (let fn of this.list[key]){
+                fn.call(this,...param)
+
+            }
+
+
+        }
+        delete(key,fn){
+            if(!fn){
+                this.list[key]=[]
+            }else{
+                this.list[key].forEach((element,index) => {
+                    if(element==fn){
+                        console.error(index);
+                        
+                        this.list[key].splice(index,1)
+                        return
+                    }
+                });
+            }
+
+        }
+
+
+
+    }
+    let f=new fun()
+     function readfun(emotion){
+        console.log('i am '+emotion)
+         
+     }
+    f.add('click',readfun)
+    f.add('click',()=>{console.log('hello')})
+    f.pub('click','upset')
+     f.delete('click',readfun)
+     f.pub('click','upset')
+
+
+   
+</script>
+
+</html>

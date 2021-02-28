@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+        事件添加在父结点ul上
+  <ul>
+    <li>hello 1</li>
+    <li>hello 2</li>
+    <li>hello 3</li>
+    <li>hello 4</li>
+  </ul>
+  <script>
+    let ul = document.querySelectorAll('ul')[0]
+    let aLi = document.querySelectorAll('li')
+    ul.addEventListener('click',function(e){
+       let oLi1 = e.target  
+       let oLi2 = e.currentTarget
+       console.log("e:",e)
+        console.log("target:",oLi1)   //  被点击的li
+        console.log("currentTarget:",oLi2)   // ul
+        console.log(oLi1===oLi2)  // false
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+
+<body>
+</body>
+<script>
+    function new2(func,...args){
+        var obj=Object.create(func.prototype)
+        var result=func.call(obj,...args)
+        if(typeof result=='object'){
+            return result
+        }else{
+            return obj
+        }
+    }
+    //使用
+    function M(name,age){
+        this.name=name
+        this.age=age
+    }
+    M.prototype.showInfo=function(){
+        console.log(this.name,' ',this.age)
+    }
+
+    var m=new2(M,'mgh',23)
+    
+    m.showInfo()
+
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<html>
+
+<body>
+    <div style="width: 100px;background: blue;">
+        <div class="a"></div>
+    </div>
+</body>
+<style>
+    .a {
+        background: green;
+        padding-top: 20%;
+    }
+</style>
+<script>
+    function reConstructBinaryTree(pre, vin) {
+        //pre:前序遍历，vin中序遍历
+        // write code here
+        let result = null
+        if (pre.length == 1) {
+            result = {
+                val: pre[0],
+                right: null,
+                left: null
+            }
+        } else if(pre.length>1) {
+            let root = pre[0]
+            let vinRootIndex = vin.indexOf(root)
+            let vinLeftTree = vin.slice(0, vinRootIndex)
+            let vinRightTree = vin.slice(vinRootIndex + 1, vin.length)
+            pre.shift()
+            let preLeftTree = pre.slice(0, vinLeftTree.length)
+            let preRightTree = pre.slice(vinLeftTree.length, pre.length)
+            
+            result = {
+                val: root,
+                left: reConstructBinaryTree(preLeftTree, vinLeftTree),
+                right: reConstructBinaryTree(preRightTree, vinRightTree)
+            }
+
+        }
+        return result
+    }
+    
+    let result = reConstructBinaryTree([1, 2, 4, 7, 3, 5, 6, 8], [4, 7, 2, 1, 5, 3, 8, 6])
+    console.log(result)
+
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<html>
+
+<body>
+    <div style="width: 100px;background: blue;">
+        <div class="a"></div>
+    </div>
+    <a href="apply,call,bind.html">去apply,call,bind.html</div>
+      <a href="实现bind函数.html">去实现bind</div>
+    <div onclick="window.history.forward(-1)" style="margin-top: 100px;">forward（1）</div>
+
+</body>
+<style>
+    .a {
+        background: green;
+        padding-top: 20%;
+    }
+</style>
+<script>
+    function ancestor(){
+      this.name='ancestor'
+    }
+    function father(){ 
+      ancestor.call(this)
+      this.name='father'
+    }
+    father.prototype=ancestor.prototype
+    function child(){
+      father.call(this)
+      this.name='child'
+    }
+    child.prototype=father.prototype
+    let c=new child()
+    console.log(c)
+
+
+
+</script>
+
+</html>

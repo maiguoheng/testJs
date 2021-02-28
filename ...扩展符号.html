@@ -1,0 +1,19 @@
+<html >
+    <body >
+        
+    </body>
+    <script>
+        var a=['11111','2222','333','44']
+        var b=['qqq','www','eee','rr']
+
+        function show(a,b,c,d){
+            console.log(`a:${a};  b:${b};  c:${c};  d:${d}`)
+        }
+        //apply传统调用方法
+        console.log('传统')
+        show.apply(null,a)
+        //es6调用方法
+        console.log('扩展符号')
+        show(...b)
+    </script>
+</html>

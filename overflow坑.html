@@ -1,0 +1,30 @@
+<html>
+
+<body>
+    <!-- 查看父元素，可以看到下面有一片空白的占据了位置但是无内容 -->
+    <!-- 将style代码中的height不注释后会发现空白位置消失，说明是滚动条占据了位置 -->
+
+    <div style="background: #999999;padding:20px;width:300px;display: -webkit-box;overflow: scroll;">
+        <div style="background: blue;width:300px"></div>
+        <div style="background: green;width:400px">2</div>
+        <div style="background: greenyellow;width:500px">3</div>
+        <div style="background: red;width:100px">4</div>
+        <div style="background: green;width:200px">5</div>
+        <div style="background: red;width:400px">6</div>
+
+        
+    </div>
+</body>
+<style>
+body{
+    margin:0;
+    padding:0
+}
+::-webkit-scrollbar {
+  width: 0px;
+   /* height: 0px; */
+}
+
+</style>
+
+</html>
