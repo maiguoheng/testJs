@@ -1,51 +1,96 @@
 <html>
 
 <body>
-    <body>
-        <!-- <div id="nav">
-            <a href="/page1">page1</a>
-            <a href="/page2">page2</a>
-            <a href="/page3">page3</a>
-            <a href="/page4">page4</a>
-            <a href="/page5">page5</a>
-            <button id="btn">page2</button>
-        </div>
-        <div id="container">
-            good
-        </div> -->
-    </body>
-    
-    <script>    
-    var obj={name:'mgh',age:21,sex:'man'}
-    Object.defineProperty(window,'APP_EDITION',{
-        value:'尊享版',
-        writable:false,
-        configurable:true,
-        enumerable:true
-    })
-    
-    console.log(window.APP_EDITION)
-    window.APP_EDITION='变了'
-    console.log(window.APP_EDITION)
-    delete window.APP_EDITION
-    console.log(window.APP_EDITION)
-    window.APP_EDITION='高级版'
-    console.log(window.APP_EDITION)
 
+    <body>
+    </body>
+
+    <script>
+        //方法1 缺点 原型链没有继承
+        function parent1() {
+            this.color = ["blue", "green"]
+        }
+        parent1.prototype.say = function () {
+            console.log(this.name)
+        }
+        function child1() {
+            parent1.call(this)
+            this.name = "子一"
+        }
+
+        //方法2 
+        //缺点 两个child2实例c1,c2。当c1.color改变时，c2的color也会改变
+        function parent2() {
+            this.color = ["blue", "green"]
+        }
+        parent2.prototype.say = function () {
+            console.log(this.name)
+        }
+        function child2() {
+            this.name = "子一"
+        }
+        child2.prototype = new parent2()
+
+        //方法3
+        // 缺点 父类的构造函数被执行了两次，第一次是Child3.prototype = new Parent3()，第二次是在实例化的时候，这是没有必要的。
+        function parent3() {
+            this.color = ["blue", "green"]
+        }
+        parent3.prototype.say = function () {
+            console.log(this.name)
+        }
+        function child3() {
+            parent3.call(this)
+            this.name = "子一"
+        }
+        child3.prototype = new parent3()
+
+        // 方法四 组合继承 1
+        // 缺点 c为child4实例。c instanceof child4===true,c instanceof parent4===true
+        //  找不出c的构造函数  
+        function parent4() {
+            this.color = ["blue", "green"]
+        }
+        parent4.prototype.say = function () {
+            console.log(this.name)
+        }
+        function child4() {
+            parent4.call(this)
+            this.name = "子一"
+        }
+        child4.prototype = parent4.prototype
+
+        // 方法五 组合继承2
+        // c为child4实例。c.constructor===child4 true  
+        // c.constructor===parent5 false
+        function parent5() {
+            this.color = ["blue", "green"]
+        }
+        parent5.prototype.say = function () {
+            console.log(this.name)
+        }
+        function child5() {
+            parent5.call(this)
+            this.name = "子一"
+        }
+        child5.prototype = Object.create(parent5.prototype)
+        child5.prototype.constructor = child5
 
     </script>
 </body>
 <style>
     @media screen and (max-width: 500px) {
-        body{
-            background: blue!important;
+        body {
+            background: blue !important;
         }
     }
-    @media  screen and (max-width: 300px) {
-        body{
-            background-color:green!important
+
+    @media screen and (max-width: 300px) {
+        body {
+            background-color: green !important
         }
     }
+
     .flex-center {
         display: flex;
         align-content: center;
