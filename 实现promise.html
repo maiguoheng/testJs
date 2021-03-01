@@ -19,27 +19,39 @@
         fun((...arg)=>{
             this.status = 'success'
             this.arg = [...arg]
+            this.thenResolveFun&&this.thenResolveFun(...this.arg)
         },(...arg)=>{
             this.status = 'fail'
             this.arg = [...arg]
+            this.thenRejectFun&&this.thenRejectFun(...this.arg)
+
         })
         
     }
     promiseM.prototype.then = function (resolve, reject) {
-        if (this.status = 'success') {
+        if(this.status == 'pending'){
+            this.thenResolveFun=resolve
+            this.thenRejectFun=reject
+        }
+        if (this.status == 'success') {
             console.error(resolve,this.arg);
-            
             resolve(...this.arg)
-        } else {
+        } 
+        if (this.status == 'fail') {
             reject(...this.arg)
 
         }
     }
 
     new promiseM((resolve, reject) => {
-        resolve(10, 11, 12)
+        setTimeout(()=>{
+            console.error(5555);
+            resolve(10, 11, 12)
+
+        },20)
 
     }).then((...arg) => {
+        console.error(6666);
         console.log(...arg)
     }, () => { })
 
