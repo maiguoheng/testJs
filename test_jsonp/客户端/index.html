@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <div>模拟客户端</div>
+
+    </body>
+    <script>
+        // let xhr=new XMLHttpRequest()
+        // xhr.onload=data=>{
+        //     console.log(data)
+        // }
+        // xhr.open('GET','http://localhost:52074/requestData.js',true)
+        // xhr.send()
+
+        // 
+        let script=document.createElement('script')
+        script.src='http://localhost:52074/requestData.js?callback=xxxxxx'
+        document.body.append(script)
+        function xxxxxx(data){
+            console.log('callbackData：',data)
+        }
+
+    </script>
+</html>

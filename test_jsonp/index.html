@@ -1,0 +1,28 @@
+<html>
+
+<body>
+
+    <div>模拟服务端</div>
+    <script>
+        function Person(){
+            this.name='mgh'
+        }
+        Person.prototype.age='50'
+
+        var p=new Person()
+        function child(){
+            Person.call(this)
+            this.father='father'
+        }
+        child.prototype=Object.create(new Person())
+        child.prototype.constructor=child
+        let c=new child()
+        console.log(c)
+
+
+
+
+    </script>
+</body>
+
+</html>

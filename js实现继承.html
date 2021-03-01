@@ -1,0 +1,77 @@
+<html>
+
+<body>
+    <body>
+        <!-- <div id="nav">
+            <a href="/page1">page1</a>
+            <a href="/page2">page2</a>
+            <a href="/page3">page3</a>
+            <a href="/page4">page4</a>
+            <a href="/page5">page5</a>
+            <button id="btn">page2</button>
+        </div>
+        <div id="container">
+            good
+        </div> -->
+    </body>
+    
+    <script>    
+    var obj={name:'mgh',age:21,sex:'man'}
+    Object.defineProperty(window,'APP_EDITION',{
+        value:'尊享版',
+        writable:false,
+        configurable:true,
+        enumerable:true
+    })
+    
+    console.log(window.APP_EDITION)
+    window.APP_EDITION='变了'
+    console.log(window.APP_EDITION)
+    delete window.APP_EDITION
+    console.log(window.APP_EDITION)
+    window.APP_EDITION='高级版'
+    console.log(window.APP_EDITION)
+
+
+    </script>
+</body>
+<style>
+    @media screen and (max-width: 500px) {
+        body{
+            background: blue!important;
+        }
+    }
+    @media  screen and (max-width: 300px) {
+        body{
+            background-color:green!important
+        }
+    }
+    .flex-center {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .flex-center.aa>div {
+        margin: 10px
+    }
+
+    .router-item {
+        text-align: center;
+        color: blue
+    }
+
+    #container {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 40px;
+    }
+
+    .block {
+        height: 200px;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+</style>
+
+</html>

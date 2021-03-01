@@ -1,0 +1,22 @@
+{
+    "name": "快捷隐藏图片",
+    "manifest_version": 2,
+    "version": "1.0",
+    "description": "运行一个脚本",
+    "browser_action": {
+    },
+    "content_scripts": [
+      {
+        "run_at": "document_end",
+        "matches": [
+          "*://*/*"
+        ],
+        "js": [
+          "util.js"
+        ]
+      }
+    ],
+    "web_accessible_resources": [
+      "page.js"
+    ]
+  }
