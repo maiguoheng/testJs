@@ -19,6 +19,9 @@
     // 代码缩减后:2
     const curr=(fun,arg=[])=>arg.length==fun.length?fun(...arg):(...args)=>curr(fun,arg.concat(...args))
 
+    // 代码缩减后:3
+    // const curr=(fun,...arg)=>arg.length==fun.length?fun(...arg):(...args)=>curr(fun,...arg.concat(args))
+
     //最初版
     // function curr(fun, args = []) {
 
