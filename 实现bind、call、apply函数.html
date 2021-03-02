@@ -1,0 +1,63 @@
+<html>
+
+<body>
+    <div style="width: 100px;background: blue;">
+        <div class="a"></div>
+    </div>
+</body>
+<style>
+    .a {
+        background: green;
+        padding-top: 20%;
+    }
+</style>
+<script>
+    //call
+    Function.prototype.call2=function (newThis,...args){
+        var obj=newThis
+        obj.fn=this
+        return obj.fn(...args)
+    }
+
+    function fun(age,sex){
+        console.log(this.name,age,sex)
+        return '调用回调'
+    }
+    fun.call2({name:'call2'},'20','男')//aaa 我赛
+
+    // bind
+    console.log('bind分界线=================================================')
+    Function.prototype.bind2=function(newThis,...args){
+        var obj=newThis
+        obj.fn=this
+        return function(){
+            return obj.fn(...args)
+        }
+    }
+
+    let funBind=fun.bind2({name:'bind2'},'21','女')
+    console.log(funBind);
+    console.log(funBind());
+
+    // apply
+    console.log('apply分界线=================================================')
+    Function.prototype.apply2=function (newThis,[...args]){
+        var obj=newThis
+        obj.fn=this
+        return obj.fn(...args)
+    }
+    fun.apply2({name:'apply'}, ['22' ,'妖'] )
+
+
+    
+
+
+
+</script>
+
+</html>
+1111
+112
+121
+211
+22
