@@ -34,21 +34,21 @@
         }
     }
     $http.request(1).then(res => {
-        console.log(1)
+        console.log(1,res)
     })
     $http.request(2).then(res => {
-        console.log(2)
+        console.log(2,res)
     })
     // 会触发授权
     $http.request(12).then(res => {
-        console.log(3)
+        console.log(3,res)
     })
     // 会触发授权
     $http.request(15).then(res => {
-        console.log(4)
+        console.log(4,res)
     })
     $http.request(8).then(res => {
-        console.log(5)
+        console.log(5,res)
     })
 
 </script>
