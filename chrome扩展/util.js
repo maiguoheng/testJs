@@ -11,7 +11,7 @@ let initTitle = false;
 
 
 document.onkeydown = function (event) {
-    if (event.altKey && event.keyCode == 88) {
+    if (event.altKey && event.key == 'x') {
         hide = !hide
         let tagNames = ['img', 'video', 'iframe']
         tagNames.forEach(tagName => {
@@ -19,11 +19,11 @@ document.onkeydown = function (event) {
         })
         if (!initTitle) {
             // 改变title
-            document.querySelectorAll('title')[0].innerText = '促销宝';
+            document.querySelectorAll('title')[0].innerText = '乐药基础数据中心';
             //改变图标
             let linkNode = document.createElement('link');
             linkNode.rel = 'icon';
-            linkNode.setAttribute('href', 'https://pm.cxb123.com/v/favicon.ico');
+            linkNode.setAttribute('href', 'https://testdatacenter.leyopharm.com/icon.ico');
             document.querySelectorAll('head')[0].appendChild(linkNode);
             initTitle = true
         }
