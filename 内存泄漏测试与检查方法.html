@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="testA">testA </div>
+    <div id="testB">testB </div>
+</body>
+<script>
+    // A、B组对照
+    // 检查方法：
+    // 运行后 f12 - Memory - 选择Heap snapshot（或allocation xxx ontimeline）,点击左上角红点
+    // 在 Class filter输入框内输入testObj ,可以看到只有testObjA,没有testObjB,
+    // 说明A出现了泄漏，B则被垃圾回收机制清除了
+
+
+    // A 组，会出现内存泄漏
+    function testobjA() {
+        this.age = 5
+    }
+    function funA() {
+        let a = new testobjA()
+        let test = document.getElementById('testA');
+        test.onclick = function () {
+            //应用了testobjA的实例，导致a无法被自动回收，出现内存泄漏的情况
+            console.log(a.age)
+        }
+    }
+    funA()
+
+    // B组， 不会出现内存泄漏
+    function testobjB() {
+        this.age = 5
+    }
+    function funB() {   
+        let b = new testobjB()
+        let test = document.getElementById('testB');
+        (function (age) {
+            test.onclick = function () {
+                console.log(age)
+            }
+        })(b.age)
+    }
+    funB()
+
+</script>
+
+</html>
