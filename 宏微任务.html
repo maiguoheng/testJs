@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function foo() {
+        console.log(2);
+        // 第一个推入的微任务
+        console.log(await Promise.resolve(8));
+        console.log(9);
+        // 第三个推入的微任务
+        console.log(await Promise.resolve(18));
+        console.log(19);
+        console.log(await 444);
+        console.log(555);
+      }
+      async function bar() {
+        console.log(4);
+        // 这里也会处理为微任务
+        // 第二个推入的微任务
+        console.log(await 6);
+        console.log(7);
+        console.log(await 222);
+        console.log(333);
+      }
+      console.log(1);
+      foo();
+      console.log(3);
+      bar();
+      console.log(5);
+      // 结果：
+      1 2 3 4 5 8 9 6 7 18 19 222 333 444 555
+    </script>
+  </body>
+</html>
