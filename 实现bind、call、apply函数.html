@@ -49,7 +49,20 @@
     fun.apply2({name:'apply'}, ['22' ,'妖'] )
 
 
-    
+
+    function A() {
+        console.log('A')
+        console.log(this)
+      }
+      function B() {
+        console.log('B')
+        console.log(this)
+      }
+      function C() {
+        console.log('C')
+        console.log(this)
+      }
+      A.bind2(B).call2(C)
 
 
 
